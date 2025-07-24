@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Create .ssh directory
         run: mkdir ~/.ssh && chmod 700 ~/.ssh
 
@@ -21,11 +21,13 @@ jobs:
       - name: Create known hosts
         run: echo "${{ secrets.KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
+      - name: Deploy
+        run: ssh -i ~/.ssh/deploy ozzy@ozzythepainter.com
+      
       - name: Install dependencies
         run: cd $GITHUB_WORKSPACE && npm install
 
       - name: Build for production
         run: npm run build
 
-      - name: Deploy
-        run: ssh -i ~/.ssh/deploy deployer@ozzythepainter.com
+
