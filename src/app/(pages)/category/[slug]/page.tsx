@@ -3,7 +3,11 @@ import { notFound } from "next/navigation";
 import { PostListItem } from "@/components/posts/post-list-item";
 import { properCase } from "@/utils/properCase";
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+interface Props {
+    params: Promise<{ slug: string }>;
+}
+
+export default async function Page({ params }: Props) {
 
     const { slug } = await params;
     const posts = await getPostsByCategory(slug);
@@ -15,5 +19,15 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             {posts.map((post) => (<PostListItem key={post.slug} post={post} withCategory={false} />))}
         </div>
     );
+
+}
+
+export async function generateStaticParams({ params }: Props) {
+    const { slug } = await params;
+    const posts = await getPostsByCategory(slug) ?? []
+
+    return posts.map(post => ({
+        slug: post.category
+    }))
 
 }
