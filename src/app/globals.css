@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: hsl(56, 97%, 56%);
+    --background-light: hsl(56, 97%, 76%);
+    --foreground: hsl(0, 0%, 0%);
 }
 
+/*noinspection CssUnresolvedCustomProperty*/
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-background-light: var(--background-light);
+    --color-link-underline: var(--color-slate-500);
+
+    --breakpoint-ml: 950px;
+
+    --font-body: var(--font-overpass-mono), 'Courier New', Courier, monospace;
+    --font-mono: var(--font-anonymous-pro), 'Courier New', Courier, monospace;
+    --font-heading: var(--font-kode-mono), 'Courier New', Courier, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+    h1, h2, h3 {
+        @apply font-heading font-bold tracking-tight;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .typography {
+        ul {
+            @media (width >= 40rem) {
+                li {
+                    list-style: inside '* ';
+                }
+            }
+        }
+    }
+}
+
+@utility gutter {
+    @apply ml:max-w-screen-ml mx-2 md:mx-auto;
+}
+
+@utility gradient-text {
+    background: linear-gradient(to right, var(--color-red-800), var(--color-indigo-900));
+    display: inline-block;
+    background-clip: text;
+    color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    /*noinspection CssUnresolvedCustomProperty*/
+    font-family: var(--font-overpass-mono), Courier, monospace;
 }

@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+import createMdx from '@next/mdx'
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const withMdx = createMdx({
+    extension: /\.mdx?$/,
+})
+
+const nextConfig = withMdx({
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+})
 
 export default nextConfig;

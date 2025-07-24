@@ -1,0 +1,1 @@
+export const properCase = (str: string) => str.replace(/^\w/, (c) => c.toUpperCase());
