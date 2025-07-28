@@ -31,6 +31,10 @@
         list-style: none;
     }
 
+    main {
+        margin-inline: 0.5rem;
+    }
+
     .typography {
         ul {
             @media (width >= 40rem) {
@@ -43,7 +47,7 @@
 }
 
 @utility gutter {
-    @apply ml:max-w-screen-ml mx-2 md:mx-auto;
+    @apply ml:max-w-screen-ml md:mx-auto;
 }
 
 @utility gradient-text {

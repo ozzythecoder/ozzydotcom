@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = await getPostBySlug(slug);
 
     return post ? {
-        title: post.meta.title,
+        title: `${ post.meta.title } | ozzy the painter`,
         description: post.meta.summary,
     } : {
         title: "404 Not Found",
